@@ -1,0 +1,21 @@
+[package]
+name = "tact"
+version = "0.1.0"
+edition = "2024"
+license = "MPL-2.0"
+publish = false
+
+[dependencies]
+bevy = "0.20"
+
+# Compile with some optimization in dev so the game runs at a reasonable
+# speed, while keeping our own crate fast to rebuild.
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
